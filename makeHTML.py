@@ -33,9 +33,19 @@ def genHtml(title, img_name, numbering, by_directory=False, is_last=False):
 
     line = line + navigate
 
-    # present the image files
+    # present the image files, after making the img itself into a link to the next file
+    if not is_last:
+        imglink = '<a href = "./{}.html">'.format(next), '</a>'
+    else:
+        imglink = '', ''
+
+    line.append(imglink[0])
     if not by_directory:
         line.append('<p align=center><img src="../{}" style="max-width:1000;"></p>'.format(img_name))
+    else:  # if by_directory(= multiple img files into one page), then for-loop
+        pass  # TODO
+
+    line.append(imglink[1])
 
     ### visible footer where the user nativates to previous or next episode. simply repeating the header
     line = line + navigate
